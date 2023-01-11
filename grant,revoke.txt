@@ -1,0 +1,119 @@
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| faculty       |
+| marks_view    |
+| mdept         |
+| mentees       |
+| mentees1      |
+| mer           |
+| movies        |
+| product       |
+| shop          |
+| student       |
+| studepartment |
++---------------+
+11 rows in set (0.00 sec)
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| stuid   | int(20)     | NO   | PRI | 0       |       |
+| stuname | varchar(20) | YES  |     | NULL    |       |
+| studept | varchar(10) | YES  |     | NULL    |       |
+| stuage  | int(20)     | YES  |     | NULL    |       |
+| course  | varchar(15) | YES  |     | NULL    |       |
+| address | varchar(15) | YES  | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> select*from student;
++-------+---------+---------+--------+--------+---------+
+| stuid | stuname | studept | stuage | course | address |
++-------+---------+---------+--------+--------+---------+
+|     1 | naveen  | CSE     |     20 | NULL   | NULL    |
+|     2 | raj     | ECE     |     18 | NULL   | NULL    |
+|     3 | ram     | EEE     |     16 | NULL   | NULL    |
+|     4 | vali    | IT      |     19 | NULL   | NULL    |
++-------+---------+---------+--------+--------+---------+
+4 rows in set (0.00 sec)
+
+mysql> create user naveen;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> grant all on student to naveen;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show grants for naveen;
++---------------------------------------------------------+
+| Grants for naveen@%                                     |
++---------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'naveen'@'%'                      |
+| GRANT ALL PRIVILEGES ON `sse`.`student` TO 'naveen'@'%' |
++---------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke ali on student naveen;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ali on student naveen' at line 1
+mysql>  revoke all on student from naveen;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for naveen;
++------------------------------------+
+| Grants for naveen@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO 'naveen'@'%' |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> grants select,update on persons to naveen;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grants select,update on persons to naveen' at line 1
+mysql> grant select,update on persons to naveen;
+ERROR 1146 (42S02): Table 'sse.persons' doesn't exist
+mysql> grants select,update on shop to naveen;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'grants select,update on shop to naveen' at line 1
+mysql> grant select,update on shop to naveen;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for naveen;
++------------------------------------------------------+
+| Grants for naveen@%                                  |
++------------------------------------------------------+
+| GRANT USAGE ON *.* TO 'naveen'@'%'                   |
+| GRANT SELECT, UPDATE ON `sse`.`shop` TO 'naveen'@'%' |
++------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> revoke update on shop from naveen;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for naveen;
++----------------------------------------------+
+| Grants for naveen@%                          |
++----------------------------------------------+
+| GRANT USAGE ON *.* TO 'naveen'@'%'           |
+| GRANT SELECT ON `sse`.`shop` TO 'naveen'@'%' |
++----------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

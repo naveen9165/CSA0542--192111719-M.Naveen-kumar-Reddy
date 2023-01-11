@@ -1,0 +1,90 @@
+mysql> create table car(car_model varchar(20),car_name varchar(20),car_mileage int(10), cost int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> drop table car;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table car(car_model int(20),car_name varchar(20),car_mileage int(10), cost int(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into car values(2000,"bmw",12,12500000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into car values(2002,"ford",20,200000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into car values(2004,"maruthi",15,3000000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into car values(2006,"audi",14,700000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from car;
++-----------+----------+-------------+----------+
+| car_model | car_name | car_mileage | cost     |
++-----------+----------+-------------+----------+
+|      2000 | bmw      |          12 | 12500000 |
+|      2002 | ford     |          20 |   200000 |
+|      2004 | maruthi  |          15 |  3000000 |
+|      2006 | audi     |          14 |   700000 |
++-----------+----------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> update car set car_name="benz" where car_model=2002;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from car;
++-----------+----------+-------------+----------+
+| car_model | car_name | car_mileage | cost     |
++-----------+----------+-------------+----------+
+|      2000 | bmw      |          12 | 12500000 |
+|      2002 | benz     |          20 |   200000 |
+|      2004 | maruthi  |          15 |  3000000 |
+|      2006 | audi     |          14 |   700000 |
++-----------+----------+-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select*from car having car_mileage>10;
++-----------+----------+-------------+----------+
+| car_model | car_name | car_mileage | cost     |
++-----------+----------+-------------+----------+
+|      2000 | bmw      |          12 | 12500000 |
+|      2002 | benz     |          20 |   200000 |
+|      2004 | maruthi  |          15 |  3000000 |
+|      2006 | audi     |          14 |   700000 |
++-----------+----------+-------------+----------+
+4 rows in set (0.01 sec)
+
+mysql> delete from car where cost=12500000;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from car;
++-----------+----------+-------------+---------+
+| car_model | car_name | car_mileage | cost    |
++-----------+----------+-------------+---------+
+|      2002 | benz     |          20 |  200000 |
+|      2004 | maruthi  |          15 | 3000000 |
+|      2006 | audi     |          14 |  700000 |
++-----------+----------+-------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select max(cost) from car;
++-----------+
+| max(cost) |
++-----------+
+|   3000000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select*from car group by car_name;
++-----------+----------+-------------+---------+
+| car_model | car_name | car_mileage | cost    |
++-----------+----------+-------------+---------+
+|      2006 | audi     |          14 |  700000 |
+|      2002 | benz     |          20 |  200000 |
+|      2004 | maruthi  |          15 | 3000000 |
++-----------+----------+-------------+---------+
+3 rows in set (0.01 sec)
+
+mysql>

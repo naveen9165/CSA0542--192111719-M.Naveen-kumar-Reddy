@@ -1,0 +1,85 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table book_company(bookid int(10),bookname varchar(20),author varchar(20),cost int(10),edition int(10));
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc book_company;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| bookid   | int(10)     | YES  |     | NULL    |       |
+| bookname | varchar(20) | YES  |     | NULL    |       |
+| author   | varchar(20) | YES  |     | NULL    |       |
+| cost     | int(10)     | YES  |     | NULL    |       |
+| edition  | int(10)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql>  insert into book_company values(1,"cprog","gdc",500,2.5);
+Query OK, 1 row affected (0.01 sec)
+
+
+mysql>  insert into book_company values(2,"dbms","teed",400,3.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  insert into book_company values(3,"os","per",200,1.5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book_company values(4,"foc","pin",100,1.2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from book_company;
++--------+----------+--------+------+---------+
+| bookid | bookname | author | cost | edition |
++--------+----------+--------+------+---------+
+|      1 | cprog    | gdc    |  500 |       2 |
+|      2 | dbms     | teed   |  400 |       4 |
+|      3 | os       | per    |  200 |       2 |
+|      4 | foc      | pin    |  100 |       1 |
++--------+----------+--------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select bookname from book_company where edition=4;
++----------+
+| bookname |
++----------+
+| dbms     |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select bookid,bookname from book_company where cost>300;
++--------+----------+
+| bookid | bookname |
++--------+----------+
+|      1 | cprog    |
+|      2 | dbms     |
++--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> update book_company set bookname="pdsd" where cost=100;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from book_company;
++--------+----------+--------+------+---------+
+| bookid | bookname | author | cost | edition |
++--------+----------+--------+------+---------+
+|      1 | cprog    | gdc    |  500 |       2 |
+|      2 | dbms     | teed   |  400 |       4 |
+|      3 | os       | per    |  200 |       2 |
+|      4 | pdsd     | pin    |  100 |       1 |
++--------+----------+--------+------+---------+
+4 rows in set (0.00 sec)
+
+mysql>
